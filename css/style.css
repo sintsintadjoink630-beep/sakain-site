@@ -3,18 +3,18 @@
    =========================================================== */
 
 :root {
-  --color-bg: #faf7f2;
-  --color-bg-soft: #f3ece1;
-  --color-primary: #7a5c44;      /* 落ち着いたブラウン */
-  --color-primary-dark: #5c4330;
-  --color-accent: #b97a4a;       /* テラコッタ系アクセント */
-  --color-accent-soft: #e8d8c3;
-  --color-text: #3c332b;
-  --color-text-soft: #6b6055;
+  --color-bg: #f4f9fc;
+  --color-bg-soft: #e2f0f8;
+  --color-primary: #2f7fb0;      /* 青空のようなブルー */
+  --color-primary-dark: #205e85;
+  --color-accent: #2f8fc4;       /* 明るいスカイブルーのアクセント */
+  --color-accent-soft: #d4ecf7;
+  --color-text: #233844;
+  --color-text-soft: #5b7384;
   --color-white: #ffffff;
-  --color-border: #e3d9cb;
-  --shadow-sm: 0 2px 8px rgba(60, 51, 43, 0.08);
-  --shadow-md: 0 6px 20px rgba(60, 51, 43, 0.12);
+  --color-border: #cfe3ee;
+  --shadow-sm: 0 2px 8px rgba(32, 73, 99, 0.08);
+  --shadow-md: 0 6px 20px rgba(32, 73, 99, 0.14);
   --radius: 10px;
   --max-width: 1100px;
   --font-base: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
@@ -509,7 +509,7 @@ section.alt { background: var(--color-bg-soft); }
 .cta-band h2 { margin: 0 0 10px; font-size: 1.4rem; }
 .cta-band p { margin: 0 0 22px; color: #e8ddd0; font-size: 0.92rem; }
 .cta-band .btn { background: var(--color-accent); }
-.cta-band .btn:hover { background: #a6663b; }
+.cta-band .btn:hover { background: #1f6f99; }
 
 /* ---------- フッター ---------- */
 .site-footer {
