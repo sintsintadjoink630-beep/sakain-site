@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         name: "ドレープカーテン",
         desc: "お部屋の主役になる厚手の遮光・遮熱カーテン。素材やヒダの本数までこだわってお作りします。",
         link: "products/drape.html",
+        img: "images/drape/drape01-1.jpg",
       },
       {
         name: "レースカーテン",
@@ -51,10 +52,23 @@ document.addEventListener("DOMContentLoaded", function () {
     var descEl = recommendEl.querySelector("[data-recommend-desc]");
     var linkEl = recommendEl.querySelector("[data-recommend-link]");
     var dotsEl = recommendEl.querySelectorAll("[data-recommend-dots] span");
+    var imgEl = recommendEl.querySelector("[data-recommend-img]");
+    var placeholderEl = recommendEl.querySelector("[data-recommend-placeholder]");
 
     if (titleEl) titleEl.textContent = current.name;
     if (descEl) descEl.textContent = current.desc;
     if (linkEl) linkEl.setAttribute("href", current.link);
+    if (imgEl && placeholderEl) {
+      if (current.img) {
+        imgEl.src = current.img;
+        imgEl.alt = current.name;
+        imgEl.hidden = false;
+        placeholderEl.hidden = true;
+      } else {
+        imgEl.hidden = true;
+        placeholderEl.hidden = false;
+      }
+    }
     if (dotsEl && dotsEl.length) {
       dotsEl.forEach(function (dot, i) {
         dot.classList.toggle("active", i === index);
