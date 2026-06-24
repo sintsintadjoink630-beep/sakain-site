@@ -2,6 +2,8 @@
    さかいインテリア サイト共通スタイル
    =========================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+
 :root {
   --color-bg: #f4f9fc;
   --color-bg-soft: #e2f0f8;
@@ -17,7 +19,7 @@
   --shadow-md: 0 6px 20px rgba(32, 73, 99, 0.14);
   --radius: 10px;
   --max-width: 1100px;
-  --font-base: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+  --font-base: "Zen Maru Gothic", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -79,10 +81,20 @@ a:hover { color: var(--color-accent); }
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--color-primary-dark);
   letter-spacing: 0.02em;
+}
+.logo-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 .logo small {
   display: block;
@@ -143,6 +155,17 @@ a:hover { color: var(--color-accent); }
   }
   .main-nav li { border-top: 1px solid var(--color-border); }
   .main-nav a { display: block; padding: 12px 4px; }
+}
+
+/* ---------- ページ上部バナー写真 ---------- */
+.page-banner {
+  display: block;
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 22px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
 }
 
 /* ---------- ヒーロー ---------- */
@@ -537,6 +560,131 @@ section.alt { background: var(--color-bg-soft); }
 }
 @media (max-width: 760px) {
   .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- 商品カード（写真クリックで詳細表示） ---------- */
+.product-card { text-align: center; margin: 0; }
+.product-thumb {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.product-thumb:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.product-thumb img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+.product-card figcaption {
+  margin-top: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+/* ---------- ライトボックス（商品詳細） ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 40, 54, 0.78);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lightbox[hidden] { display: none; }
+.lightbox-inner {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  max-width: 720px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 30px;
+}
+.lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-text-soft);
+}
+.lightbox-close:hover { color: var(--color-accent); }
+.lightbox-media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 220px;
+}
+.lightbox-img {
+  max-width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--color-border);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-dark);
+}
+.lightbox-nav:hover { background: var(--color-white); }
+.lightbox-nav.prev { left: 10px; }
+.lightbox-nav.next { right: 10px; }
+.lightbox-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 16px 0 6px;
+}
+.lightbox-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-border);
+}
+.lightbox-dots span.active { background: var(--color-accent); }
+.lightbox-title {
+  margin: 10px 0 10px;
+  color: var(--color-primary-dark);
+  font-size: 1.15rem;
+  text-align: center;
+}
+.lightbox-desc {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 0.95rem;
+  line-height: 1.85;
+  text-align: center;
 }
 
 /* ---------- 注意書き（プレースホルダーコンテンツ用） ---------- */

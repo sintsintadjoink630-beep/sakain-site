@@ -10,7 +10,7 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <div class="logo">さかいインテリア<small>宮崎県延岡市 オーダーカーテン専門店</small></div>
+    <div class="logo"><img src="../images/お店のロゴ.jpg" alt="さかいインテリア ロゴ" class="logo-img">さかいインテリア<small>宮崎県延岡市 オーダーカーテン専門店</small></div>
     <button class="nav-toggle" aria-label="メニュー">☰</button>
     <nav class="main-nav">
       <ul>
@@ -26,6 +26,7 @@
 
 <div class="page-header">
   <div class="container">
+    <img src="../images/トップ写真.jpg" alt="さかいインテリア" class="page-banner">
     <h1>ドレープカーテン</h1>
     <p>お部屋の主役になる、厚手の遮光・遮熱カーテン</p>
     <div class="breadcrumb"><a href="../index.html">ホーム</a> ＞ <a href="../mokuji.html#products">取扱商品</a> ＞ ドレープカーテン</div>
@@ -47,23 +48,29 @@
     </p>
 
     <div class="update-note-wrap">
-      <span class="update-note">毎月更新：ドレープカーテン 人気ベスト10（2026年6月時点）</span>
+      <span class="update-note">現在人気のドレープカーテンを写真と共にご紹介しています</span>
     </div>
 
-    <div class="rank-grid" style="margin-top:24px;">
-      <div class="rank-card"><div class="rank-num top">1</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num top">2</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num top">3</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">4</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">5</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">6</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">7</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">8</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">9</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">10</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-    </div>
+    <p style="text-align:center;font-size:0.82rem;color:var(--color-text-soft);margin:14px 0 30px;">写真をクリックすると、他の写真と詳しいご紹介をご覧いただけます</p>
+
+    <div class="rank-grid" id="drape-grid"></div>
   </div>
 </section>
+
+<!-- ライトボックス -->
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-inner">
+    <button class="lightbox-close" type="button" aria-label="閉じる">&times;</button>
+    <div class="lightbox-media">
+      <button class="lightbox-nav prev" type="button" aria-label="前の写真">&lsaquo;</button>
+      <img class="lightbox-img" src="" alt="">
+      <button class="lightbox-nav next" type="button" aria-label="次の写真">&rsaquo;</button>
+    </div>
+    <div class="lightbox-dots"></div>
+    <h3 class="lightbox-title"></h3>
+    <p class="lightbox-desc"></p>
+  </div>
+</div>
 
 <div class="cta-band">
   <div class="container">
@@ -78,5 +85,75 @@
 </footer>
 
 <script src="../js/main.js"></script>
+<script>
+  var DRAPE_PRODUCTS = [
+    {
+      name: "サリーナ (Salina)",
+      fullName: "【サンゲツ】 サリーナ (Salina)",
+      desc: "ワッシャー加工が生む柔らかな陰影が、お部屋に高級感と安らぎを添えます。洗練された大人のシャーベットカラー（アイボリー・ベージュ・ピンク）で、上質なくつろぎの時間を。",
+      images: ["サリーナ (Salina)【サンゲツ】①.jpg", "サリーナ (Salina)【サンゲツ】②.png", "サリーナ (Salina)【サンゲツ】　生地.png"]
+    },
+    {
+      name: "FD-55205",
+      fullName: "【リリカラ】 FD-55205",
+      desc: "高密度に織り込まれた繊細なオーナメント柄に、花々が美しく咲き誇る一枚。立体感あふれる織りが、ホテルライクな上質空間を演出します。",
+      images: ["FD-55205【リリカラ】.png", "FD-55205【リリカラ】　生地.png"]
+    },
+    {
+      name: "AZ-8419 (abita)",
+      fullName: "【シンコール】 AZ-8419 (abita)",
+      desc: "艶やかな糸が描く曲線が、光の当たり方で様々な表情を見せてくれます。見るたびに新しい発見があるカーテンです。",
+      images: ["【シンコール】 AZ-8419 (abita).png", "【シンコール】 AZ-8419 (abita)　生地.png"]
+    },
+    {
+      name: "TKF11529 (fuful)",
+      fullName: "【東リ】 TKF11529 (fuful)",
+      desc: "青空に浮かぶカラフルな熱気球が、お部屋を遊び心いっぱいに彩ります。遮光2級・ウォッシャブル・防炎機能も備え、子ども部屋やリビングのアクセントに最適です。",
+      images: ["【東リ】 TKF11529 (fuful).png", "【東リ】 TKF11529 (fuful)　生地.png"]
+    },
+    {
+      name: "ベロアム",
+      fullName: "【サンゲツ】ベロアム",
+      desc: "高級感あふれるベロア調カーテンシリーズ。ランダムな光沢と上品な起毛感が、モダンな空間を格上げします。",
+      images: ["【サンゲツ】ベロアム.png", "【サンゲツ】ベロアム　生地.png"]
+    },
+    {
+      name: "FD-55403",
+      fullName: "【リリカラ】FD-55403",
+      desc: "さらりとした風合いが心地よい遮熱ボイル。圧迫感のないナチュラルな佇まいで、毎日の暮らしに優しく寄り添います。",
+      images: ["【リリカラ】FD-55403.png"]
+    },
+    {
+      name: "TKF11312",
+      fullName: "【東リ】TKF11312",
+      desc: "光沢糸が生み出す立体感のあるクラシック柄。艶やかな表情が、上品なインテリアにぴったりです。",
+      images: ["【東リ】TKF11312①.png", "【東リ】TKF11312②.png", "【東リ】TKF11312　生地.png"]
+    },
+    {
+      name: "SC7246 (STRINGS)",
+      fullName: "【サンゲツ】SC7246 (STRINGS)",
+      desc: "しわ加工を施した暗幕生地が、複雑な光の屈折で奥行きを演出。高級感ある無地調デザインの遮光2級カーテンです。",
+      images: ["【サンゲツ】SC7246 (STRINGS).png", "【サンゲツ】SC7246 (STRINGS)　生地.png"]
+    },
+    {
+      name: "FD-55185",
+      fullName: "【リリカラ】FD-55185",
+      desc: "「芦なびき」と「羊歯」、ふたつの型紙文様を緻密に重ねた和モダンデザイン。深みのある色合いが、落ち着いた空間を作ります。",
+      images: ["【リリカラ】FD-55185.png", "【リリカラ】FD-55185　生地.png"]
+    },
+    {
+      name: "FD-55376",
+      fullName: "【リリカラ】 FD-55376",
+      desc: "キラキラと輝くエレガントなボイル地に、おしゃれな羽モールをプラス。立体感のある華やかな一枚です。",
+      images: ["【リリカラ】 FD-55376.png"]
+    }
+  ];
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.SakaiGallery) {
+      window.SakaiGallery.render("drape-grid", DRAPE_PRODUCTS, "../images/ドレープカーテン/");
+    }
+  });
+</script>
 </body>
 </html>
