@@ -107,7 +107,7 @@ window.SakaiGallery = (function () {
           '" alt="' +
           p.name +
           '" loading="lazy"></button>' +
-          "<figcaption>" +
+          '<figcaption class="sr-only">' +
           p.name +
           "</figcaption>" +
           "</figure>"
