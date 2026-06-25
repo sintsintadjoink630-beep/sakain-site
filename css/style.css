@@ -206,10 +206,25 @@ a:hover { color: var(--color-accent); }
 
 /* ---------- ページヘッダー（下層ページ用） ---------- */
 .page-header {
-  background: linear-gradient(160deg, #F0FBFF 0%, #E0F7FA 100%);
+  /* 水色のしわ加工カーテン風テクスチャ */
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0)    0px,
+      rgba(255,255,255,0.55) 5px,
+      rgba(14,165,233,0.07)  10px,
+      rgba(255,255,255,0.3)  15px,
+      rgba(12,74,110,0.06)   21px,
+      rgba(255,255,255,0.5)  26px,
+      rgba(14,165,233,0.04)  30px,
+      rgba(255,255,255,0)    36px
+    ),
+    linear-gradient(160deg, #D6F0FC 0%, #C5EAF8 40%, #D9F3FD 100%);
   padding: 40px 0;
   text-align: center;
   border-bottom: 2px solid var(--color-accent);
+  position: relative;
+  overflow: hidden;
 }
 .page-header h1 { margin: 0 0 6px; color: var(--color-primary-dark); font-size: 1.6rem; }
 .page-header p { margin: 0; color: var(--color-text-soft); font-size: 0.95rem; }
@@ -887,43 +902,60 @@ section.alt { background: var(--color-bg-soft); }
 }
 
 /* ==========================================================
-   レースカーテン ページ遷移アニメーション
+   レースカーテン ページ遷移アニメーション（ページヘッダー限定）
    ========================================================== */
-#page-curtain {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  display: flex;
-  pointer-events: none;
-}
-.curtain-l,
-.curtain-r {
-  flex: 1;
+
+/* ほぼ透明のレースカーテンパネル */
+.hcurtain-l,
+.hcurtain-r {
+  position: absolute;
+  top: 0;
   height: 100%;
-  background-color: rgba(240, 251, 255, 0.93);
+  width: 51%;
+  pointer-events: none;
+  /* ほぼ透明の白＋細かいレース格子 */
+  background-color: rgba(255, 255, 255, 0.10);
   background-image:
-    radial-gradient(circle at 50% 50%, rgba(14,165,233,0.13) 6px, transparent 6px),
-    radial-gradient(circle at 0%  0%,  rgba(14,165,233,0.10) 3px, transparent 3px),
-    radial-gradient(circle at 100% 0%,  rgba(14,165,233,0.10) 3px, transparent 3px),
-    radial-gradient(circle at 0% 100%, rgba(14,165,233,0.10) 3px, transparent 3px),
-    radial-gradient(circle at 100% 100%,rgba(14,165,233,0.10) 3px, transparent 3px),
-    repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(14,165,233,0.05) 28px, rgba(14,165,233,0.05) 29px),
-    repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(14,165,233,0.05) 28px, rgba(14,165,233,0.05) 29px);
-  background-size: 36px 36px, 36px 36px, 36px 36px, 36px 36px, 36px 36px, 29px 29px, 29px 29px;
-  transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.55) 2.5px, transparent 2.5px),
+    repeating-linear-gradient(0deg,   transparent, transparent 22px, rgba(255,255,255,0.18) 22px, rgba(255,255,255,0.18) 23px),
+    repeating-linear-gradient(90deg,  transparent, transparent 22px, rgba(255,255,255,0.18) 22px, rgba(255,255,255,0.18) 23px);
+  background-size: 24px 24px, 23px 23px, 23px 23px;
 }
-.curtain-l {
-  transform-origin: left center;
-  box-shadow: inset -6px 0 18px rgba(14,165,233,0.08), 4px 0 12px rgba(14,165,233,0.12);
-  border-right: 1px solid rgba(14,165,233,0.18);
+.hcurtain-l {
+  left: 0;
+  box-shadow: inset -5px 0 14px rgba(14,165,233,0.10), 3px 0 10px rgba(14,165,233,0.08);
+  border-right: 1px solid rgba(255,255,255,0.35);
+  animation: hcurtain-open-l 2.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
-.curtain-r {
-  transform-origin: right center;
-  box-shadow: inset 6px 0 18px rgba(14,165,233,0.08), -4px 0 12px rgba(14,165,233,0.12);
-  border-left: 1px solid rgba(14,165,233,0.18);
+.hcurtain-r {
+  right: 0;
+  box-shadow: inset 5px 0 14px rgba(14,165,233,0.10), -3px 0 10px rgba(14,165,233,0.08);
+  border-left: 1px solid rgba(255,255,255,0.35);
+  animation: hcurtain-open-r 2.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
-#page-curtain.curtain-open .curtain-l { transform: translateX(-100%); }
-#page-curtain.curtain-open .curtain-r { transform: translateX(100%); }
-#page-curtain.curtain-closing { pointer-events: all; }
-#page-curtain.curtain-closing .curtain-l { transform: translateX(0); }
-#page-curtain.curtain-closing .curtain-r { transform: translateX(0); }
+
+/* 開くアニメーション — 最初にゆらゆら揺れてからゆっくり開く */
+@keyframes hcurtain-open-l {
+  0%   { transform: translateX(0%)   skewX(0deg); }
+  6%   { transform: translateX(-1.5%) skewX(-3deg); }
+  13%  { transform: translateX(-0.5%) skewX(2.5deg); }
+  20%  { transform: translateX(-2%)   skewX(-2deg); }
+  28%  { transform: translateX(-9%)   skewX(1.6deg); }
+  42%  { transform: translateX(-30%)  skewX(-1.1deg); }
+  58%  { transform: translateX(-55%)  skewX(0.7deg); }
+  74%  { transform: translateX(-78%)  skewX(-0.4deg); }
+  90%  { transform: translateX(-95%)  skewX(0.15deg); }
+  100% { transform: translateX(-100%) skewX(0deg); }
+}
+@keyframes hcurtain-open-r {
+  0%   { transform: translateX(0%)    skewX(0deg); }
+  6%   { transform: translateX(1.5%)  skewX(3deg); }
+  13%  { transform: translateX(0.5%)  skewX(-2.5deg); }
+  20%  { transform: translateX(2%)    skewX(2deg); }
+  28%  { transform: translateX(9%)    skewX(-1.6deg); }
+  42%  { transform: translateX(30%)   skewX(1.1deg); }
+  58%  { transform: translateX(55%)   skewX(-0.7deg); }
+  74%  { transform: translateX(78%)   skewX(0.4deg); }
+  90%  { transform: translateX(95%)   skewX(-0.15deg); }
+  100% { transform: translateX(100%)  skewX(0deg); }
+}

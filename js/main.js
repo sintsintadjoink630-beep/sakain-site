@@ -3,37 +3,52 @@
 // ===========================================================
 
 // ===========================================================
-// レースカーテン ページ遷移アニメーション
+// レースカーテン アニメーション（ページヘッダー限定）
 // ===========================================================
 (function () {
-  // カーテン要素を生成して body 先頭に挿入
-  var curtain = document.createElement("div");
-  curtain.id = "page-curtain";
-  curtain.innerHTML = '<div class="curtain-l"></div><div class="curtain-r"></div>';
-  document.body.insertBefore(curtain, document.body.firstChild);
+  // .page-header 内にレースカーテンパネルを注入
+  var header = document.querySelector(".page-header");
+  if (!header) return;
 
-  // ページ読み込み時：カーテンが閉じた状態から開く
-  requestAnimationFrame(function () {
-    requestAnimationFrame(function () {
-      curtain.classList.add("curtain-open");
-    });
-  });
+  var lPanel = document.createElement("div");
+  lPanel.className = "hcurtain-l";
+  var rPanel = document.createElement("div");
+  rPanel.className = "hcurtain-r";
+  header.appendChild(lPanel);
+  header.appendChild(rPanel);
 
-  // 内部リンククリック時：カーテンを閉じてから遷移
+  // ナビリンククリック時：カーテンを閉じてから遷移
   document.addEventListener("click", function (e) {
     var link = e.target.closest("a[href]");
     if (!link) return;
     var href = link.getAttribute("href");
-    // 外部リンク・アンカー・tel/mailtoは除外
     if (!href || href.startsWith("#") || href.startsWith("http") ||
         href.startsWith("mailto") || href.startsWith("tel") || link.target === "_blank") return;
+
     e.preventDefault();
     var dest = link.href;
-    curtain.classList.remove("curtain-open");
-    curtain.classList.add("curtain-closing");
+
+    // 現在のアニメーション位置を取得して引き継ぐ
+    var lTransform = window.getComputedStyle(lPanel).transform;
+    var rTransform = window.getComputedStyle(rPanel).transform;
+
+    lPanel.style.animation = "none";
+    rPanel.style.animation = "none";
+    void lPanel.offsetWidth; // reflow
+
+    lPanel.style.transform = lTransform;
+    rPanel.style.transform = rTransform;
+    void lPanel.offsetWidth; // reflow
+
+    // ゆっくり閉じる（揺れながら戻る）
+    lPanel.style.transition = "transform 0.55s cubic-bezier(0.55, 0, 0.1, 1)";
+    rPanel.style.transition = "transform 0.55s cubic-bezier(0.55, 0, 0.1, 1)";
+    lPanel.style.transform = "translateX(0)";
+    rPanel.style.transform = "translateX(0)";
+
     setTimeout(function () {
       window.location.href = dest;
-    }, 620);
+    }, 540);
   });
 })();
 
