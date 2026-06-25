@@ -44,27 +44,33 @@
 
     <p style="max-width:640px;margin:0 auto 30px;text-align:center;color:var(--color-text-soft);">
       レースカーテンは日差しを和らげながら外からの視線をカットする、暮らしに欠かせないアイテムです。
-      UVカット・防炎・ミラーレースなど機能性タイプも豊富にご用意しています。
+      UVカット・遮熱・ミラーレースなど機能性タイプも豊富にご用意しています。
     </p>
 
     <div class="update-note-wrap">
-      <span class="update-note">毎月更新：レースカーテン 人気ベスト10（2026年6月時点）</span>
+      <span class="update-note">現在人気のレースカーテンを写真と共にご紹介しています</span>
     </div>
 
-    <div class="rank-grid" style="margin-top:24px;">
-      <div class="rank-card"><div class="rank-num top">1</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num top">2</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num top">3</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">4</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">5</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">6</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">7</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">8</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">9</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">10</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-    </div>
+    <p style="text-align:center;font-size:0.82rem;color:var(--color-text-soft);margin:14px 0 30px;">写真をクリックすると、他の写真と詳しいご紹介をご覧いただけます</p>
+
+    <div class="rank-grid" id="lace-grid"></div>
   </div>
 </section>
+
+<!-- ライトボックス -->
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-inner">
+    <button class="lightbox-close" type="button" aria-label="閉じる">&times;</button>
+    <div class="lightbox-media">
+      <button class="lightbox-nav prev" type="button" aria-label="前の写真">&lsaquo;</button>
+      <img class="lightbox-img" src="" alt="">
+      <button class="lightbox-nav next" type="button" aria-label="次の写真">&rsaquo;</button>
+    </div>
+    <div class="lightbox-dots"></div>
+    <h3 class="lightbox-title"></h3>
+    <p class="lightbox-desc"></p>
+  </div>
+</div>
 
 <div class="cta-band">
   <div class="container">
@@ -79,5 +85,75 @@
 </footer>
 
 <script src="../js/main.js"></script>
+<script>
+  var LACE_PRODUCTS = [
+    {
+      name: "LS-63501（リリカラ SALA）",
+      fullName: "【リリカラ SALA】LS-63501",
+      desc: "「迷ったらこれ」と自信をもってお勧めできる一枚です。特殊繊維「涼しや」による遮熱・断熱効果で夏の強い日差しをしっかりブロック。日中はミラー機能でプライバシーを守りながら、防汚加工で長く清潔に使えます。機能性にこだわる方に最適な、さかいインテリア一押しのレースカーテンです。\n\n✔ 遮熱ミラー　✔ UVカット　✔ 防汚機能",
+      images: ["②LS-63501.png"]
+    },
+    {
+      name: "LS-63510（リリカラ SALA）",
+      fullName: "【リリカラ SALA】LS-63510",
+      desc: "主張しすぎない繊細なブライト糸のストライプが、シンプルな住宅に自然と馴染みます。遮熱ミラー機能でプライバシーもしっかり守りながら、ナチュラルテイストの上品な雰囲気を演出。「機能は欲しいけれど、柄はシンプルに」という方にぴったりの一枚です。\n\n✔ 遮熱ミラー　✔ ストライプ柄　✔ ナチュラルテイスト",
+      images: ["①LS-63510.png"]
+    },
+    {
+      name: "LS-63523（リリカラ SALA）",
+      fullName: "【リリカラ SALA】LS-63523",
+      desc: "自然をモチーフにした葉柄デザインが、窓辺を清々しく彩ります。遮熱ミラー機能で夏の暑さをしっかりブロックしながら、防カビ加工で清潔感を長くキープ。グリーン系インテリアとの相性が抜群で、ナチュラルテイストのお部屋に特におすすめです。\n\n✔ 遮熱ミラー　✔ 防カビ　✔ リーフ柄",
+      images: ["③LS-63523.png"]
+    },
+    {
+      name: "LS-63514（リリカラ SALA）",
+      fullName: "【リリカラ SALA】LS-63514",
+      desc: "余分な主張をしない無地スタイルで、どんな内装にも違和感なくフィットします。遮熱・UVカット・ミラーの三機能を備えており、新築・リフォーム問わず住宅案件の定番として多くのお客様に選ばれています。「まず間違いのない一枚を」という方にぴったりです。\n\n✔ 遮熱　✔ UVカット　✔ ミラー",
+      images: ["④LS-63514.png"]
+    },
+    {
+      name: "LS-63469（リリカラ SALA）",
+      fullName: "【リリカラ SALA】LS-63469",
+      desc: "「レースらしい柔らかい雰囲気を残したい」という方に、ぜひ一度見ていただきたい一枚。遮熱機能を持ちながら、ほかの遮熱レースより軽やかで透明感のある仕上がりです。光をふんわりと取り込みながら、やさしく視線をカットします。\n\n✔ 遮熱　✔ ボイル系　✔ 軽やかな透け感",
+      images: ["⑤LS-63469.png"]
+    },
+    {
+      name: "TKF11725 / TKF11726（東リ fuful）",
+      fullName: "【東リ fuful】TKF11725 / TKF11726",
+      desc: "季節感を感じさせる植物モチーフのデザインに、遮熱糸・UVカット・プライバシーレース機能を凝縮した一枚。窓辺を明るく彩りながら、日差しや視線もしっかりカットします。機能とデザインのバランスが非常に良く、自信を持っておすすめできます。\n\n✔ 遮熱糸　✔ UVカット　✔ プライバシーレース　✔ リーフ柄",
+      images: ["⑥TKF11725　01.png", "⑥TKF11725　02.png", "⑥TKF11725　生地.png"]
+    },
+    {
+      name: "TKF11723（東リ fuful）",
+      fullName: "【東リ fuful】TKF11723",
+      desc: "特に日差しの強い南向き・西向きの窓に選ばれることの多い、機能性重視の一枚。遮熱糸とUVカットでお部屋の温度上昇を抑えながら、ミラー機能で日中のプライバシーもしっかり守ります。シンプルな無地系デザインで、どんなお部屋にも合わせやすいです。\n\n✔ 遮熱糸　✔ UVカット　✔ ミラー",
+      images: ["⑦TKF11723.png", "⑦TKF11723　生地.png"]
+    },
+    {
+      name: "TKF11736（東リ fuful）",
+      fullName: "【東リ fuful】TKF11736",
+      desc: "リビングの窓を華やかに演出しながら、遮熱・UVカット・ミラーの三機能をしっかり備えています。「機能は必要だけれど、窓辺も素敵にしたい」という方の声に応える一枚。お部屋のアクセントとして活躍しながら、日々の暮らしをしっかりサポートします。\n\n✔ 遮熱　✔ UVカット　✔ ミラー　✔ 柄入り",
+      images: ["⑧TKF11736　01.png", "⑧TKF11736　02.png", "⑧TKF11736　生地.png"]
+    },
+    {
+      name: "TKF11737（東リ fuful）",
+      fullName: "【東リ fuful】TKF11737",
+      desc: "最近増えているナチュラルモダンなインテリアに自然と溶け込む、センスのよいモダン柄が魅力。遮熱・UVカット機能も備えており、毎日の暮らしをおしゃれに快適にサポートします。「今っぽい窓辺にしたい」という方にぴったりの一枚です。\n\n✔ 遮熱　✔ UVカット　✔ モダン柄",
+      images: ["⑨TKF11737　01.png", "⑨TKF11737　02.png", "⑨TKF11737　生地.png"]
+    },
+    {
+      name: "TKF11748（東リ fuful）",
+      fullName: "【東リ fuful】TKF11748",
+      desc: "シンプルな中にも横ラインが控えめなアクセントを加え、窓辺に程よい変化を生み出します。遮熱糸・UVカット・ミラー機能を備えており、「ただの無地は物足りない、でも派手すぎるのも…」という方にちょうどいい一枚です。\n\n✔ 遮熱糸　✔ UVカット　✔ ミラー　✔ 横ライン柄",
+      images: ["⑩TKF11748　01.png", "⑩TKF11748　02.png", "⑩TKF11748　生地.png"]
+    }
+  ];
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.SakaiGallery) {
+      window.SakaiGallery.render("lace-grid", LACE_PRODUCTS, "../images/レースカーテン/");
+    }
+  });
+</script>
 </body>
 </html>
