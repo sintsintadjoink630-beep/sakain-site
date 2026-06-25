@@ -42,42 +42,12 @@
     <p class="section-sub">季節ごとにおすすめの商品をご紹介しています</p>
 
     <h3 class="subsection-title">ドレープカーテン</h3>
-    <div class="seasonal-grid">
-      <div class="seasonal-card">
-        <div class="seasonal-img">商品写真（準備中）</div>
-        <p class="seasonal-name">商品名①</p>
-        <p class="seasonal-desc">説明文をここに入力します</p>
-      </div>
-      <div class="seasonal-card">
-        <div class="seasonal-img">商品写真（準備中）</div>
-        <p class="seasonal-name">商品名②</p>
-        <p class="seasonal-desc">説明文をここに入力します</p>
-      </div>
-      <div class="seasonal-card">
-        <div class="seasonal-img">商品写真（準備中）</div>
-        <p class="seasonal-name">商品名③</p>
-        <p class="seasonal-desc">説明文をここに入力します</p>
-      </div>
-    </div>
+    <p style="font-size:0.82rem;color:var(--color-text-soft);margin:-8px 0 18px;">写真をクリックすると詳しいご紹介をご覧いただけます</p>
+    <div class="seasonal-grid" id="summer-drape"></div>
 
     <h3 class="subsection-title">レースカーテン</h3>
-    <div class="seasonal-grid">
-      <div class="seasonal-card">
-        <div class="seasonal-img">商品写真（準備中）</div>
-        <p class="seasonal-name">商品名①</p>
-        <p class="seasonal-desc">説明文をここに入力します</p>
-      </div>
-      <div class="seasonal-card">
-        <div class="seasonal-img">商品写真（準備中）</div>
-        <p class="seasonal-name">商品名②</p>
-        <p class="seasonal-desc">説明文をここに入力します</p>
-      </div>
-      <div class="seasonal-card">
-        <div class="seasonal-img">商品写真（準備中）</div>
-        <p class="seasonal-name">商品名③</p>
-        <p class="seasonal-desc">説明文をここに入力します</p>
-      </div>
-    </div>
+    <p style="font-size:0.82rem;color:var(--color-text-soft);margin:-8px 0 18px;">写真をクリックすると詳しいご紹介をご覧いただけます</p>
+    <div class="seasonal-grid" id="summer-lace"></div>
 
     <div style="text-align:center; margin-top:32px;">
       <a class="btn" href="mokuji.html">商品紹介をもっと見る</a>
@@ -214,6 +184,71 @@
   </div>
 </footer>
 
+<!-- ライトボックス -->
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-inner">
+    <button class="lightbox-close" type="button" aria-label="閉じる">&times;</button>
+    <div class="lightbox-media">
+      <button class="lightbox-nav prev" type="button" aria-label="前の写真">&lsaquo;</button>
+      <img class="lightbox-img" src="" alt="">
+      <button class="lightbox-nav next" type="button" aria-label="次の写真">&rsaquo;</button>
+    </div>
+    <div class="lightbox-dots"></div>
+    <h3 class="lightbox-title"></h3>
+    <p class="lightbox-desc"></p>
+  </div>
+</div>
+
 <script src="js/main.js"></script>
+<script>
+  var SUMMER_DRAPE = [
+    {
+      name: "サリーナ（サンゲツ）",
+      fullName: "【サンゲツ】サリーナ (Salina)",
+      desc: "ワッシャー加工が生む柔らかな陰影が、お部屋に高級感と安らぎを添えます。洗練された大人のシャーベットカラー（アイボリー・ベージュ・ピンク）で、上質なくつろぎの時間を。",
+      images: ["drape01-1.jpg", "drape01-2.png", "drape01-3.png"]
+    },
+    {
+      name: "FD-55205（リリカラ）",
+      fullName: "【リリカラ】FD-55205",
+      desc: "高密度に織り込まれた繊細なオーナメント柄に、花々が美しく咲き誇る一枚。立体感あふれる織りが、ホテルライクな上質空間を演出します。",
+      images: ["drape02-1.png", "drape02-2.png"]
+    },
+    {
+      name: "AZ-8419 abita（シンコール）",
+      fullName: "【シンコール】AZ-8419 (abita)",
+      desc: "艶やかな糸が描く曲線が、光の当たり方で様々な表情を見せてくれます。見るたびに新しい発見があるカーテンです。",
+      images: ["drape03-1.png", "drape03-2.png"]
+    }
+  ];
+
+  var SUMMER_LACE = [
+    {
+      name: "LS-63501（リリカラ SALA）",
+      fullName: "【リリカラ SALA】LS-63501",
+      desc: "「迷ったらこれ」と自信を持っておすすめできる夏の万能レース。特殊繊維「涼しや」による遮熱・断熱効果で日差しをブロックし、ミラー機能で日中のプライバシーもしっかり守ります。防汚加工付きで長く清潔に。\n\n✔ 遮熱ミラー　✔ UVカット　✔ 防汚機能",
+      images: ["②LS-63501.png"]
+    },
+    {
+      name: "LS-63510（リリカラ SALA）",
+      fullName: "【リリカラ SALA】LS-63510",
+      desc: "ブライト糸の控えめなストライプが上品な印象を与える、シンプル住宅向けのミラーレース。遮熱機能でお部屋の温度上昇を抑えながら、ナチュラルテイストの雰囲気を保ちます。\n\n✔ 遮熱ミラー　✔ ストライプ柄　✔ ナチュラルテイスト",
+      images: ["①LS-63510.png"]
+    },
+    {
+      name: "LS-63523（リリカラ SALA）",
+      fullName: "【リリカラ SALA】LS-63523",
+      desc: "夏らしい爽やかなリーフ柄が窓辺を清々しく彩ります。遮熱ミラー機能で暑さをブロックしながら防カビ加工で清潔に。グリーン系インテリアとの相性が抜群です。\n\n✔ 遮熱ミラー　✔ 防カビ　✔ リーフ柄",
+      images: ["③LS-63523.png"]
+    }
+  ];
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.SakaiGallery) {
+      window.SakaiGallery.render("summer-drape", SUMMER_DRAPE, "images/夏のおすすめ/ドレープカーテン/");
+      window.SakaiGallery.render("summer-lace", SUMMER_LACE, "images/夏のおすすめ/レースカーテン/");
+    }
+  });
+</script>
 </body>
 </html>
