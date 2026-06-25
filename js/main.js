@@ -2,6 +2,41 @@
 // さかいインテリア サイト共通スクリプト
 // ===========================================================
 
+// ===========================================================
+// レースカーテン ページ遷移アニメーション
+// ===========================================================
+(function () {
+  // カーテン要素を生成して body 先頭に挿入
+  var curtain = document.createElement("div");
+  curtain.id = "page-curtain";
+  curtain.innerHTML = '<div class="curtain-l"></div><div class="curtain-r"></div>';
+  document.body.insertBefore(curtain, document.body.firstChild);
+
+  // ページ読み込み時：カーテンが閉じた状態から開く
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      curtain.classList.add("curtain-open");
+    });
+  });
+
+  // 内部リンククリック時：カーテンを閉じてから遷移
+  document.addEventListener("click", function (e) {
+    var link = e.target.closest("a[href]");
+    if (!link) return;
+    var href = link.getAttribute("href");
+    // 外部リンク・アンカー・tel/mailtoは除外
+    if (!href || href.startsWith("#") || href.startsWith("http") ||
+        href.startsWith("mailto") || href.startsWith("tel") || link.target === "_blank") return;
+    e.preventDefault();
+    var dest = link.href;
+    curtain.classList.remove("curtain-open");
+    curtain.classList.add("curtain-closing");
+    setTimeout(function () {
+      window.location.href = dest;
+    }, 620);
+  });
+})();
+
 document.addEventListener("DOMContentLoaded", function () {
   // --- モバイルナビ開閉 ---
   var toggle = document.querySelector(".nav-toggle");

@@ -885,3 +885,45 @@ section.alt { background: var(--color-bg-soft); }
   .lightbox-title { font-size: 1.05rem; }
   .lightbox-desc { font-size: 0.88rem; }
 }
+
+/* ==========================================================
+   レースカーテン ページ遷移アニメーション
+   ========================================================== */
+#page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  pointer-events: none;
+}
+.curtain-l,
+.curtain-r {
+  flex: 1;
+  height: 100%;
+  background-color: rgba(240, 251, 255, 0.93);
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(14,165,233,0.13) 6px, transparent 6px),
+    radial-gradient(circle at 0%  0%,  rgba(14,165,233,0.10) 3px, transparent 3px),
+    radial-gradient(circle at 100% 0%,  rgba(14,165,233,0.10) 3px, transparent 3px),
+    radial-gradient(circle at 0% 100%, rgba(14,165,233,0.10) 3px, transparent 3px),
+    radial-gradient(circle at 100% 100%,rgba(14,165,233,0.10) 3px, transparent 3px),
+    repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(14,165,233,0.05) 28px, rgba(14,165,233,0.05) 29px),
+    repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(14,165,233,0.05) 28px, rgba(14,165,233,0.05) 29px);
+  background-size: 36px 36px, 36px 36px, 36px 36px, 36px 36px, 36px 36px, 29px 29px, 29px 29px;
+  transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.curtain-l {
+  transform-origin: left center;
+  box-shadow: inset -6px 0 18px rgba(14,165,233,0.08), 4px 0 12px rgba(14,165,233,0.12);
+  border-right: 1px solid rgba(14,165,233,0.18);
+}
+.curtain-r {
+  transform-origin: right center;
+  box-shadow: inset 6px 0 18px rgba(14,165,233,0.08), -4px 0 12px rgba(14,165,233,0.12);
+  border-left: 1px solid rgba(14,165,233,0.18);
+}
+#page-curtain.curtain-open .curtain-l { transform: translateX(-100%); }
+#page-curtain.curtain-open .curtain-r { transform: translateX(100%); }
+#page-curtain.curtain-closing { pointer-events: all; }
+#page-curtain.curtain-closing .curtain-l { transform: translateX(0); }
+#page-curtain.curtain-closing .curtain-r { transform: translateX(0); }
