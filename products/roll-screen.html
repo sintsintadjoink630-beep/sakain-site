@@ -44,27 +44,33 @@
 
     <p style="max-width:640px;margin:0 auto 30px;text-align:center;color:var(--color-text-soft);">
       ロールスクリーンは生地をすっきりと巻き上げられるシンプルな窓装飾。お部屋を広く見せたい方やカフェ風インテリアにもおすすめです。
-      ウイルス対策用の透明タイプもご用意しています。
+      遮熱・遮光・デザイン系など用途に合わせて選べます。
     </p>
 
     <div class="update-note-wrap">
-      <span class="update-note">毎月更新：ロールスクリーン 人気ベスト10（2026年6月時点）</span>
+      <span class="update-note">現在人気のロールスクリーンを写真と共にご紹介しています</span>
     </div>
 
-    <div class="rank-grid" style="margin-top:24px;">
-      <div class="rank-card"><div class="rank-num top">1</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num top">2</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num top">3</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">4</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">5</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">6</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">7</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">8</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">9</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-      <div class="rank-card"><div class="rank-num">10</div><figure><div class="img-placeholder">写真準備中</div><figcaption>商品名（準備中）</figcaption></figure></div>
-    </div>
+    <p style="text-align:center;font-size:0.82rem;color:var(--color-text-soft);margin:14px 0 30px;">写真をクリックすると、他の写真と詳しいご紹介をご覧いただけます</p>
+
+    <div class="rank-grid" id="roll-grid"></div>
   </div>
 </section>
+
+<!-- ライトボックス -->
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-inner">
+    <button class="lightbox-close" type="button" aria-label="閉じる">&times;</button>
+    <div class="lightbox-media">
+      <button class="lightbox-nav prev" type="button" aria-label="前の写真">&lsaquo;</button>
+      <img class="lightbox-img" src="" alt="">
+      <button class="lightbox-nav next" type="button" aria-label="次の写真">&rsaquo;</button>
+    </div>
+    <div class="lightbox-dots"></div>
+    <h3 class="lightbox-title"></h3>
+    <p class="lightbox-desc"></p>
+  </div>
+</div>
 
 <div class="cta-band">
   <div class="container">
@@ -79,5 +85,63 @@
 </footer>
 
 <script src="../js/main.js"></script>
+<script>
+  var ROLL_PRODUCTS = [
+    {
+      name: "RS274 ステーノ（サンゲツ）",
+      fullName: "【サンゲツ】RS274 ステーノ",
+      desc: "夏らしさ・機能性・デザイン性のバランスが非常に良く、リビングへの提案なら最有力の一枚です。機能性繊維を使用した遮熱シアースクリーンで、日差しの熱を和らげながら柔らかな光を取り込みます。細かなストライプ柄とベーシックなカラー展開で、どのようなインテリアにもオールマイティに合わせられます。\n\n✔ 遮熱　✔ UVカット　✔ シアータイプ　✔ 細ストライプ",
+      images: ["１，サンゲツ RS274 ステーノ.png", "１，サンゲツ RS274 ステーノ　生地.png"]
+    },
+    {
+      name: "RS269 コンプティR（サンゲツ）",
+      fullName: "【サンゲツ】RS269 コンプティR",
+      desc: "西日対策ならトップクラスの実力を持つ、遮光1級の高機能スクリーン。裏面への特殊コーティングにより遮光性と遮熱性を同時に発揮し、強烈な西日や夏の直射日光をしっかりシャットアウトします。寝室への使用はもちろん、共生地のバーチカルブラインドとの組み合わせも可能です。\n\n✔ 遮熱　✔ 遮光1級　✔ 無地",
+      images: ["２，サンゲツ RS269 コンプティR.png", "２，サンゲツ RS269 コンプティR　生地.png"]
+    },
+    {
+      name: "ラルクシールド ミスト遮熱（タチカワ）",
+      fullName: "【タチカワ】ラルクシールド ミスト遮熱",
+      desc: "やわらかな風合いと穏やかなグレイッシュカラーに遮熱機能を加えた、近年の住宅デザインと相性の良い高機能タイプです。強い日差しによる熱をやさしく和らげ、快適な室温をキープ。清涼感のある上品な色調はオフィスや公共施設にもよく選ばれます。\n\n✔ 遮熱特化　✔ 無地　✔ グレイッシュカラー",
+      images: ["３，タチカワ ラルクシールド ミスト遮熱.png"]
+    },
+    {
+      name: "RS216 フルフィR（サンゲツ）",
+      fullName: "【サンゲツ】RS216 フルフィR",
+      desc: "細かな市松の織組織が生み出すボリューム感ある無地調ファブリックが特長。織物ならではの上質な表情がお部屋に高級感をプラスします。機能性繊維による遮熱効果も備えており、デザインと実用性を両立したい方に最適な一枚です。\n\n✔ 遮熱　✔ 無地調　✔ 高級感のある織物風",
+      images: ["４，サンゲツ RS216 フルフィR　01.png", "４，サンゲツ RS216 フルフィR　02.png", "４，サンゲツ RS216 フルフィR　生地.png"]
+    },
+    {
+      name: "オーガスタ RS-1026（タチカワ）",
+      fullName: "【タチカワ】オーガスタ RS-1026",
+      desc: "アクセント窓や書斎・寝室など、こだわりの空間におすすめのデザイン系スクリーン。光を受けるとオーガスタの葉のデザインが生地一面に広がり、時間の移り変わりとともに表情が変わる贅沢な一枚です。上質感のある大人のリラックス空間を演出します。\n\n✔ ボタニカル柄　✔ 夏らしい葉柄　✔ デザイン重視",
+      images: ["５、タチカワ オーガスタ RS-1026　01.png", "５、タチカワ オーガスタ RS-1026　02.png"]
+    },
+    {
+      name: "RS260 グランシャ（サンゲツ）",
+      fullName: "【サンゲツ】RS260 グランシャ",
+      desc: "裏面にコーティング加工を施した遮光1級以上のスクリーン。全点が遮光1級以上の性能を持ち、どのカラーを選んでも確実な遮光性が得られます。寝室や西面の窓など、光をしっかりシャットアウトしたい場所に最適です。\n\n✔ 遮光1級　✔ 全点遮光　✔ モダン",
+      images: ["６，サンゲツ RS260 グランシャ.png", "６，サンゲツ RS260 グランシャ　生地.png"]
+    },
+    {
+      name: "RS226 グラース（サンゲツ）",
+      fullName: "【サンゲツ】RS226 グラース",
+      desc: "ガラス繊維を使用した耐久性・寸法安定性に優れたスクリーン。水拭きでのお手入れが可能なため、清潔さを保ちやすいのが大きな魅力です。モダンですっきりとした表情はオフィスや店舗にもよく馴染み、長くきれいに使い続けられます。\n\n✔ ガラス繊維　✔ 耐久性高い　✔ モダン",
+      images: ["７，サンゲツ RS226 グラース.png", "７，サンゲツ RS226 グラース　生地.png"]
+    },
+    {
+      name: "フェアⅡ遮光 RS-1526（タチカワ）",
+      fullName: "【タチカワ】フェアⅡ遮光 RS-1526",
+      desc: "寝室や子ども部屋にも安心してお使いいただける、住宅向けの万能遮光スクリーン。高輝度マットフィルムをラミネートした生地は映写スクリーンとしても使用でき、ホームシアター用途にもおすすめです。シンプルなデザインで空間を選びません。\n\n✔ 遮光　✔ シンプル　✔ 映写スクリーンとしても使用可",
+      images: ["８，タチカワ フェアⅡ遮光 RS-1526　01.png", "８，タチカワ フェアⅡ遮光 RS-1526　02.png"]
+    }
+  ];
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.SakaiGallery) {
+      window.SakaiGallery.render("roll-grid", ROLL_PRODUCTS, "../images/ロールスクリーン/");
+    }
+  });
+</script>
 </body>
 </html>
