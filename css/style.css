@@ -784,3 +784,99 @@ section.alt { background: var(--color-bg-soft); }
   border-radius: 8px;
   margin-bottom: 20px;
 }
+
+/* ==========================================================
+   レスポンシブ対応（スマホ・タブレット）
+   ========================================================== */
+
+/* タブレット（〜768px） */
+@media (max-width: 768px) {
+  body { font-size: 17px; }
+
+  .hero { padding: 40px 0 30px; }
+  .hero h1 { font-size: 1.7rem; }
+
+  .shop-gallery { grid-template-columns: 1fr 1fr; }
+  .seasonal-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* スマホ（〜480px） */
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+
+  /* レイアウト余白 */
+  .container { padding: 0 16px; }
+  section { padding: 36px 0; }
+
+  /* ヘッダー */
+  .header-inner { padding: 10px 16px; }
+  .logo { font-size: 1.05rem; gap: 8px; }
+  .logo-img { width: 32px; height: 32px; }
+  .logo small { font-size: 0.58rem; }
+
+  /* ヒーロー */
+  .hero { padding: 30px 0 24px; }
+  .hero h1 { font-size: 1.4rem; line-height: 1.65; margin-bottom: 14px; }
+  .hero p { font-size: 0.95rem; line-height: 1.9; }
+  .hero .tagline { font-size: 0.8rem; padding: 6px 14px; margin-top: 14px; }
+
+  /* 見出し・サブタイトル */
+  .section-title { font-size: 1.25rem; }
+  .section-sub { font-size: 0.9rem; margin-bottom: 24px; }
+  .subsection-title { font-size: 1.05rem; margin-top: 28px 0 14px; padding-left: 10px; }
+
+  /* ページヘッダー（下層ページ） */
+  .page-header { padding: 26px 0; }
+  .page-header h1 { font-size: 1.3rem; }
+  .page-header p { font-size: 0.88rem; }
+  .page-banner { max-width: 240px; }
+
+  /* グリッドを1列に統一 */
+  .seasonal-grid { grid-template-columns: 1fr; }
+  .appeal-grid { grid-template-columns: 1fr; }
+  .shop-gallery { grid-template-columns: 1fr; }
+
+  /* 商品紹介カード（目次） */
+  .toc-card { padding: 14px 12px; }
+  .toc-card h3 { font-size: 1.0rem; }
+  .toc-card p { font-size: 0.85rem; }
+
+  /* アピールポイント */
+  .appeal-item { padding: 18px 14px; }
+  .appeal-item h4 { font-size: 0.95rem; }
+  .appeal-item p { font-size: 0.85rem; }
+
+  /* ボタン（タップしやすいサイズに） */
+  .btn { padding: 14px 28px; font-size: 1.0rem; }
+
+  /* 店舗情報テーブル */
+  .shop-info-table th { width: 76px; font-size: 0.85rem; }
+  .shop-info-table td { font-size: 0.85rem; padding: 11px 10px; }
+  .shop-info-table th { padding: 11px 10px; }
+
+  /* お問い合わせ */
+  .contact-box { padding: 20px 14px; }
+  .contact-box h3 { font-size: 1.05rem; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select { font-size: 1.0rem; padding: 11px 12px; }
+
+  /* CTAバンド */
+  .cta-band { padding: 36px 0; }
+  .cta-band h2 { font-size: 1.2rem; line-height: 1.5; }
+  .cta-band p { font-size: 0.9rem; margin-bottom: 18px; }
+
+  /* フッター */
+  .site-footer { padding: 32px 0 20px; font-size: 0.82rem; }
+
+  /* ライトボックス */
+  .lightbox-inner { padding: 20px 14px; }
+  .lightbox-title { font-size: 1.05rem; }
+  .lightbox-desc { font-size: 0.88rem; }
+
+  /* 店舗紹介ギャラリー */
+  .shop-gallery { gap: 12px; }
+
+  /* recommend-card（残存する場合） */
+  .recommend-card { padding: 18px; gap: 20px; }
+}
